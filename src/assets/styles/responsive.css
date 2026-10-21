@@ -78,3 +78,6 @@ html,body{width:100%;max-width:100%;overflow-x:clip}
  .load-step button{min-width:40px;min-height:48px}
  .load-step .weight input{min-width:0}
 }
+
+/* Escolha da modalidade semanal */
+.plan-mode-card{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:16px;margin:18px 0 8px;box-shadow:var(--lift)}.plan-mode-card label{font-size:14px;white-space:nowrap}.plan-mode-card select{flex:1;min-width:min(100%,260px);min-height:48px;padding:10px 14px;border:1px solid #c8d8cd;border-radius:12px;background:#f8fbf7;color:var(--ink);font:inherit;font-weight:600}.plan-mode-card .note{width:100%;margin:0}.plan-mode-card select:focus-visible{outline:3px solid #76b995;outline-offset:2px}@media(max-width:650px){.plan-mode-card{display:grid;grid-template-columns:minmax(0,1fr);padding:14px;margin:14px 0 6px}.plan-mode-card select{width:100%;min-width:0}.plan-mode-card label{white-space:normal}}
