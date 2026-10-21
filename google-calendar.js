@@ -7,7 +7,7 @@
   const valid = () => Boolean(token && Date.now() < expiresAt);
   function status(message) {
     const e = document.querySelector('#google-status');
-    if (e) e.textContent = message;
+    if (e) { e.textContent = message; e.classList.toggle('connected', valid()); }
     const b = document.querySelector('#google-connect');
     if (b) b.disabled = connecting;
   }
