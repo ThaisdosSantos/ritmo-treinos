@@ -20,13 +20,18 @@
     status('Aguardando sua autorização no Google…');
     try {
       client = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID, scope: SCOPE,
-        callback: response => {
+        client_id: CLIENT_ID, scope: SCOPE+' openid',
+        callback: async response => {
           connecting = false;
           if (response.error || !response.access_token || !google.accounts.oauth2.hasGrantedAllScopes(response, SCOPE)) {
             token = null; expiresAt = 0;
             status('Permissão da Agenda não concedida. Conecte novamente e autorize o acesso.'); return;
           }
+          try {
+            const identity=await fetch('https://openidconnect.googleapis.com/v1/userinfo',{headers:{Authorization:`Bearer ${response.access_token}`},cache:'no-store'});
+            const profile=identity.ok?await identity.json():null;
+            if(!profile||profile.sub!==window.RitmoAuth?.getUser()?.sub){token=null;expiresAt=0;status('Selecione a mesma conta Google usada para entrar no Ritmo.');return;}
+          }catch{status('Não foi possível confirmar a conta da Agenda. Tente novamente.');return;}
           token = response.access_token;
           expiresAt = Date.now() + Math.max(0, Number(response.expires_in || 0) - 60) * 1000;
           const enabled = document.querySelector('#google-auto');

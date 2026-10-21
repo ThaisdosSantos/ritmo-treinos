@@ -20,7 +20,7 @@ No app, vá a Configurações → Conectar Google Agenda. Confirme a conta e as 
 
 ## Dados e acesso
 
-Este site não implementa cadastro nem login para restringir o acesso. GitHub Pages não herda a proteção privada do site anterior. As fichas iniciais e o código ficam disponíveis aos visitantes.
+O app oferece Entrar com Google e Sair. A conta é confirmada com o endpoint UserInfo do Google. Tokens ficam apenas na memória da aba e o login deve ser repetido ao recarregar. O histórico local é separado pelo identificador Google (sub). O botão Sair salva o treino em andamento e limpa a sessão ao recarregar a página. O site continua estático: isso não é proteção de dados no servidor; código e fichas iniciais permanecem públicos.
 O histórico e as cargas são mantidos no localStorage do navegador. A mudança de domínio NÃO transfere esse histórico. Antes de migrar, exporte o histórico no site antigo para preservar uma cópia; esta versão ainda não oferece importação.
 A autorização Google fica apenas na memória da aba, não nos arquivos ou localStorage.
 
