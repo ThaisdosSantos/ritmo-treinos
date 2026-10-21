@@ -1,0 +1,20 @@
+{
+  "id": "/ritmo-treinos/",
+  "name": "Ritmo — Meus Treinos",
+  "short_name": "Ritmo",
+  "description": "Seu treino, seu ritmo. Registre exercícios, cargas e evolução.",
+  "start_url": "/ritmo-treinos/",
+  "scope": "/ritmo-treinos/",
+  "display": "standalone",
+  "background_color": "#f3f6f1",
+  "theme_color": "#206744",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
