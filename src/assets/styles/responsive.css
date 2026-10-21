@@ -1,0 +1,80 @@
+/* Ritmo responsive layout: last stylesheet to resolve earlier competing breakpoints. */
+html,body{width:100%;max-width:100%;overflow-x:clip}
+#app-shell,main,main>section,.layout,.layout>.card,.side,.week,.exercise,.load-control{min-width:0}
+.card,.historyitem{max-width:100%}
+@media (min-width:651px) and (max-width:1199px){
+ main{padding:26px clamp(18px,3vw,36px)}
+ .week{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .day{padding:12px;min-width:0}
+ .day b{font-size:clamp(13px,1.6vw,17px)}
+ .layout{grid-template-columns:minmax(0,1fr)}
+ .side{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .exercise{grid-template-columns:26px minmax(0,1fr) minmax(170px,230px) 48px}
+ .listhead{grid-template-columns:minmax(0,1fr) minmax(170px,230px) 48px}
+}
+@media (max-width:650px){
+ body:has(#app-shell:not(.hidden)){padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+ main{width:100%;max-width:100%;padding:16px 14px 36px}
+ header.app-header{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:10px 0 16px}
+ .header-label{font-size:12px}
+ .header-actions{width:100%;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+ .header-actions #date{font-size:12px}
+ .account-chip{max-width:min(54vw,220px);min-width:0}
+ .account-chip .account-name{max-width:none;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .app-header #logout{min-width:48px;min-height:48px;padding:8px 12px}
+ .intro{margin:20px 0}
+ .intro h1,h1{font-size:clamp(25px,7vw,34px);line-height:1.15;overflow-wrap:anywhere}
+ .intro p{font-size:14px;overflow-wrap:anywhere}
+ .week{display:flex;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;gap:10px;margin:18px -14px;padding:0 14px 12px;max-width:calc(100% + 28px);-webkit-overflow-scrolling:touch}
+ .week .day{flex:0 0 clamp(124px,38vw,160px);min-width:0;scroll-snap-align:start;min-height:106px;padding:12px}
+ .day b{font-size:16px;overflow-wrap:anywhere}
+ .layout{display:flex;flex-direction:column;gap:16px;width:100%}
+ .layout>.card,.side>.card,.card{width:100%;min-width:0;padding:16px;border-radius:16px}
+ .side{display:grid;grid-template-columns:minmax(0,1fr);order:initial;gap:14px;width:100%}
+ .side>.card:not(.timer){display:block}
+ .titlebar{align-items:flex-start;flex-wrap:wrap;gap:8px}
+ .titlebar h2{min-width:0;overflow-wrap:anywhere}
+ .tag{max-width:100%;white-space:normal}
+ .listhead{display:none}
+ .exercise{display:grid;grid-template-columns:26px minmax(0,1fr) 48px;gap:10px;align-items:start;padding:14px 12px;margin:0 0 12px}
+ .exercise .num{grid-column:1;grid-row:1;align-self:center}
+ .exercise>div:nth-child(2){grid-column:2;grid-row:1;min-width:0}
+ .exercise>div:nth-child(2) b{font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+ .exercise>div:nth-child(2) small{font-size:12px}
+ .exercise .check-target{grid-column:3;grid-row:1;min-width:48px;min-height:48px}
+ .exercise .load-control{grid-column:1/-1;grid-row:2;width:100%;min-width:0}
+ .load-step{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:8px;align-items:stretch}
+ .load-step button{width:48px;min-width:48px;min-height:48px;font-size:21px}
+ .load-step .weight{min-width:0;width:100%;padding:0 12px}
+ .load-step .weight input{width:100%;min-width:0;height:48px;font-size:16px;letter-spacing:normal}
+ .load-step .weight span{display:inline;font-size:12px}
+ .last-load{font-size:12px!important;margin-top:6px}
+ .clock{font-size:clamp(29px,9vw,42px)!important;letter-spacing:-.045em;white-space:nowrap}
+ .timer .primary{min-height:52px}
+ .rest-clock{font-size:clamp(30px,9vw,40px)}
+ .rest-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .rest-options button{min-width:0;min-height:48px}
+ .historyitem .secondary{max-width:100%}
+ .history-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .history-actions .secondary{min-width:0;width:100%;overflow-wrap:anywhere}
+ .bottom-nav{grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
+ .bottom-nav button{min-height:54px;min-width:0}
+ .edit-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .settings-grid{grid-template-columns:minmax(0,1fr)}
+ .login-screen{padding:16px;min-height:100dvh}
+ .login-card{max-width:100%;padding:26px 20px}
+}
+@media (max-width:360px){
+ main{padding-inline:10px}
+ .week{margin-inline:-10px;padding-inline:10px;max-width:calc(100% + 20px)}
+ .exercise{grid-template-columns:20px minmax(0,1fr) 48px;padding:12px 9px;gap:7px}
+ .history-actions{grid-template-columns:1fr}
+ .account-chip{max-width:50vw}
+}
+@media (min-width:651px){
+ .week{min-width:0}
+ .exercise .load-control{min-width:0}
+ .load-step{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;gap:6px}
+ .load-step button{min-width:40px;min-height:48px}
+ .load-step .weight input{min-width:0}
+}
