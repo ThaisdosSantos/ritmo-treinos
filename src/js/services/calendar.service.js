@@ -1,16 +1,31 @@
-/* Google Identity Services: access tokens stay in memory, never in browser storage. */
+/**
+ * @file Integração Google Calendar API com consentimento OAuth independente do login.
+ * @description Access tokens ficam somente em memória; a conta autorizada deve ter
+ * o mesmo identificador `sub` do usuário autenticado no Ritmo.
+ */
+/**
+ * @typedef {Object} WorkoutSession
+ * @property {string} id Identificador UUID estável da sessão.
+ * @property {number} day Índice da ficha (0 a 4).
+ * @property {number} start Timestamp inicial em milissegundos.
+ * @property {number} end Timestamp final em milissegundos.
+ * @property {boolean[]} done Exercícios concluídos.
+ * @property {string[]} weights Cargas registradas por exercício.
+ */
 (() => {
   const CLIENT_ID = '320635472769-hrmi2sorgpdgp6vncjk8b02hbdami8av.apps.googleusercontent.com';
   const SCOPE = 'https://www.googleapis.com/auth/calendar.events.owned';
   let token = null, expiresAt = 0, client = null, connecting = false;
   const inFlight = new Map();
   const valid = () => Boolean(token && Date.now() < expiresAt);
+  /** @param {string} message Estado textual da autorização exibido na UI. */
   function status(message) {
     const e = document.querySelector('#google-status');
     if (e) { e.textContent = message; e.classList.toggle('connected', valid()); }
     const b = document.querySelector('#google-connect');
     if (b) b.disabled = connecting;
   }
+  /** Solicita autorização Calendar com escopo restrito aos eventos próprios. */
   function connect() {
     if (!window.google?.accounts?.oauth2) {
       status('O serviço Google não carregou. Verifique sua conexão e tente novamente.'); return;
@@ -49,6 +64,7 @@
       status('Não foi possível abrir o Google. Confira a origem JavaScript autorizada nas configurações OAuth.');
     }
   }
+  /** Revoga o token atual quando possível e desativa o envio automático. */
   function disconnect() {
     const current = token;
     token = null; expiresAt = 0;
@@ -57,6 +73,13 @@
     if (current && window.google?.accounts?.oauth2) google.accounts.oauth2.revoke(current, () => {});
     status('Agenda desconectada. As próximas sessões serão salvas apenas no histórico.');
   }
+  /**
+   * Cria o payload do evento com ID determinístico para evitar duplicações.
+   * @param {WorkoutSession} s Sessão finalizada.
+   * @param {Array} plan Ficha usada na sessão.
+   * @returns {Object} Recurso de evento compatível com Google Calendar API.
+   * @throws {Error} Se ID ou intervalo de tempo forem inválidos.
+   */
   function buildEvent(s, plan) {
     const id = 'ritmo' + s.id.toLowerCase().replace(/-/g, '');
     if (!/^ritmo[0-9a-f]{32}$/.test(id)) throw new Error('Sessão sem identificador válido.');
@@ -72,6 +95,13 @@
       extendedProperties:{private:{ritmoSessionId:s.id}}
     };
   }
+  /**
+   * Envia uma sessão ao calendário primário da conta autorizada.
+   * Em conflito HTTP 409, verifica o evento existente antes de confirmar sucesso.
+   * @param {WorkoutSession} s
+   * @param {Array} plan
+   * @returns {Promise<{id: string}>}
+   */
   async function send(s, plan) {
     if (!valid()) throw new Error('Reconecte o Google Agenda em Configurações e tente novamente.');
     const body = buildEvent(s, plan);
@@ -102,6 +132,12 @@
     if (event.id !== body.id) throw new Error('Não foi possível validar a confirmação do evento.');
     return {id:event.id};
   }
+  /**
+   * Deduplica chamadas concorrentes para a mesma sessão nesta aba.
+   * @param {WorkoutSession} s
+   * @param {Array} plan
+   * @returns {Promise<{id: string}>}
+   */
   function sync(s, plan) {
     if (inFlight.has(s.id)) return inFlight.get(s.id);
     const operation = send(s,plan).finally(()=>inFlight.delete(s.id));

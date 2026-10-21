@@ -1,10 +1,18 @@
-// Login validates the access token with Google's UserInfo endpoint.
-// This static app stores workout data locally; it has no protected server database.
+/**
+ * @file Autenticação via Google Identity Services (OAuth 2.0).
+ * @description Identifica a conta usando UserInfo; os treinos permanecem no navegador.
+ * O client ID é público, mas tokens e credenciais privadas nunca devem ser persistidos.
+ */
 (() => {
   const clientId='320635472769-hrmi2sorgpdgp6vncjk8b02hbdami8av.apps.googleusercontent.com';
   let user=null,busy=false;
   const button=document.querySelector('#login-google'), message=document.querySelector('#login-message');
+  /** @param {string} text Mensagem acessível apresentada ao usuário. */
   function failure(text){busy=false;button.disabled=false;message.textContent=text;}
+  /**
+   * Inicia o fluxo de consentimento Google e abre os dados locais da conta validada.
+   * @returns {void}
+   */
   function login(){
     if(busy)return;
     if(!window.google?.accounts?.oauth2){failure('O Google ainda não carregou. Verifique a conexão e tente novamente.');return;}
@@ -33,6 +41,7 @@
       client.requestAccessToken({prompt:'select_account'});
     }catch{failure('Não foi possível abrir o login Google. Confira a origem autorizada no Google Cloud.');}
   }
+  /** Encerra o acesso visual e preserva os dados locais para o próximo login. */
   function logout(){window.RitmoAccount?.save();user=null;location.reload();}
   window.RitmoAuth={getUser:()=>user,login,logout};
   button.onclick=login;document.querySelector('#logout').onclick=logout;
