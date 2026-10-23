@@ -4,3 +4,5 @@ import './services/sync.service.js';
 import './core/workout.js?v=mongodb-sync-1';
 import './services/auth.service.js';
 import './core/timer.js';
+import './core/running.js';
+document.querySelectorAll('button[data-view="running"]').forEach(b=>b.addEventListener('click',()=>window.dispatchEvent(new Event('ritmo:running-open'))));
