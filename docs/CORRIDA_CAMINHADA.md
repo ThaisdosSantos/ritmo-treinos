@@ -18,3 +18,12 @@
 - GPX importado exige pontos com latitude, longitude e tempo. Arquivos TCX não são suportados nesta versão.
 - Leaflet e tiles do OpenStreetMap precisam de internet e estão sujeitos à política de uso do provedor.
 - A comparação de rotas é aproximada, não um algoritmo de correspondência de trajetos.
+
+## Controles durante a atividade (2026-10)
+- Iniciar atividade, pausar/retomar manualmente e concluir com confirmação para evitar toque acidental.
+- Pausa automática opcional: com leituras GPS sucessivas indicando velocidade inferior a aproximadamente 0,8 km/h por pelo menos 3 segundos. Depende da frequência e qualidade do GPS; não é garantida quando o navegador suspende as leituras.
+- Tempo e pace consideram o tempo ativo, descontando pausas. A distância não é acumulada enquanto pausado.
+- Mapa inicialmente bloqueado para evitar capturar gestos de rolagem. Botões permitem desbloquear e recentralizar no último ponto GPS.
+- Alertas visíveis de GPS negado, impreciso ou sem atualização por mais de 20 segundos.
+- Sinalização de quilômetros com vibração (quando suportada) e dois bipes opcionais; som pode exigir interação prévia e pode ser silenciado pelo sistema.
+- A cadência continua manual, pois navegadores não oferecem contagem confiável de passos.
