@@ -27,3 +27,12 @@
 - Alertas visíveis de GPS negado, impreciso ou sem atualização por mais de 20 segundos.
 - Sinalização de quilômetros com vibração (quando suportada) e dois bipes opcionais; som pode exigir interação prévia e pode ser silenciado pelo sistema.
 - A cadência continua manual, pois navegadores não oferecem contagem confiável de passos.
+
+## Recursos avançados
+- Pausar e concluir exigem pressionar por 2,5 segundos; concluir ainda solicita confirmação. Teclado: segurar Enter ou Espaço.
+- Badge de qualidade GPS por precisão reportada: até 20 m (forte), até 45 m (moderada), acima disso/sem leitura (sem sinal confiável). Indicadores são aproximações, não garantia de qualidade da rota.
+- Acompanhamento automático do mapa, botão 🎯 para reativar e marcadores A/B para início e fim (também no histórico).
+- Perfil SVG de altitude e pace estimados; a altimetria depende de coordenadas com elevação e não estará disponível para todas as rotas.
+- Recordes pessoais: maior distância, melhor split de 1 km registrado e melhor 5 km estimado pelo pace médio da atividade. A estimativa de 5 km não representa um recorde oficial de segmento.
+- Tênis padrão é selecionado automaticamente em novas atividades e sincronizado com o MongoDB, com alerta quando a quilometragem ultrapassa o limite configurado.
+- Avisos de split sonoros/vibratórios continuam sujeitos às permissões do navegador e limitações de iOS.
