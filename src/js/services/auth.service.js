@@ -19,7 +19,7 @@
             const profile=await result.json();
             if(typeof profile.sub!=='string'||!profile.sub||profile.sub.length>255)throw Error();
             user={sub:profile.sub,name:profile.name||profile.email||'Sua conta',email:profile.email||''};
-            window.RitmoAccount.open(user);
+            window.RitmoAccount.open(user);window.RitmoSync?.start(user.sub,response.access_token);
             document.querySelector('#account-name').textContent=user.name;
             document.querySelector('#account-name').title=user.email;
             document.querySelector('#account-avatar').textContent=user.name.slice(0,1).toUpperCase();
@@ -33,7 +33,7 @@
       client.requestAccessToken({prompt:'select_account'});
     }catch{failure('Não foi possível abrir o login Google. Confira a origem autorizada no Google Cloud.');}
   }
-  function logout(){window.RitmoAccount?.save();user=null;location.reload();}
+  function logout(){window.RitmoSync?.stop();window.RitmoAccount?.save();user=null;location.reload();}
   window.RitmoAuth={getUser:()=>user,login,logout};
   button.onclick=login;document.querySelector('#logout').onclick=logout;
 })();
