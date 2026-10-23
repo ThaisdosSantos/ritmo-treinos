@@ -1,0 +1,29 @@
+/* Critical fallback for running view: remains usable if external styles fail. */
+#running{min-width:0;max-width:100%;overflow-x:clip}
+#running .run-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important;margin:22px 0!important;align-items:start}
+#running .run-grid>.card{min-width:0;overflow:hidden}
+#running .run-fields{display:flex!important;flex-wrap:wrap!important;align-items:end!important;gap:14px!important}
+#running .run-fields label{display:block!important;flex:1 1 160px!important;min-width:0!important;font-size:12px}
+#running .run-fields input,#running .run-fields select{display:block!important;width:100%!important;min-width:0!important;margin-top:8px!important;padding:12px!important;border:1px solid #dbe5dc!important;border-radius:9px!important;background:#fff!important;color:#1d3530!important;font-size:14px!important}
+#running .run-fields>input{flex:1 1 180px;padding:12px;border:1px solid #dbe5dc;border-radius:9px}
+#running .run-metrics{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;margin:22px 0!important}
+#running .run-metrics>div{min-width:0!important;padding:14px!important;background:#f0f6ed!important;border-radius:12px!important}
+#running .run-metrics small{display:block!important;font-size:12px!important;line-height:1.4}
+#running .run-metrics strong{display:block!important;margin-top:7px!important;font-size:clamp(16px,1.7vw,23px)!important;line-height:1.3!important;overflow-wrap:anywhere}
+#running .run-buttons{display:flex!important;flex-wrap:wrap!important;gap:10px!important}
+#running .run-buttons button{flex:1 1 150px!important;width:auto!important;margin:0!important}
+#running #run-map{display:block!important;position:relative!important;width:100%!important;max-width:100%!important;height:340px!important;overflow:hidden!important;isolation:isolate;background:#e9f0e8;border-radius:12px;contain:layout paint}
+#running .run-mini{position:relative!important;height:150px!important;width:100%!important;overflow:hidden!important;isolation:isolate;contain:layout paint;border-radius:10px}
+#running #run-map .leaflet-pane,#running .run-mini .leaflet-pane{position:absolute!important;left:0;top:0}
+#running #run-map .leaflet-container,#running .run-mini .leaflet-container{overflow:hidden!important}
+#running .run-splits{width:100%;border-collapse:collapse}
+#running .run-splits th,#running .run-splits td{padding:10px 6px;text-align:left;border-bottom:1px solid #e0e5dc}
+#running .run-history{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:16px}
+#running .run-activity{min-width:0;overflow:hidden}
+#running .run-chips{display:flex;gap:7px;flex-wrap:wrap}
+#running .run-chips span{background:#eaf3e7;padding:7px 9px;border-radius:20px;font-size:12px}
+#running .run-actions{display:flex;gap:8px;margin-top:12px}
+#running .run-shoe{display:grid;gap:8px;padding:14px 0;border-bottom:1px solid #e0e5dc}
+#running .run-shoe progress{width:100%}
+@media(max-width:1000px){#running .run-grid{grid-template-columns:1fr!important}#running #run-map{height:300px!important}}
+@media(max-width:540px){#running .run-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}#running .run-buttons button{flex-basis:100%!important}#running #run-map{height:260px!important}}
