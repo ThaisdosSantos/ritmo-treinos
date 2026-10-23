@@ -81,3 +81,27 @@ html,body{width:100%;max-width:100%;overflow-x:clip}
 
 /* Escolha da modalidade semanal */
 .plan-mode-card{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:16px;margin:18px 0 8px;box-shadow:var(--lift)}.plan-mode-card label{font-size:14px;white-space:nowrap}.plan-mode-card select{flex:1;min-width:min(100%,260px);min-height:48px;padding:10px 14px;border:1px solid #c8d8cd;border-radius:12px;background:#f8fbf7;color:var(--ink);font:inherit;font-weight:600}.plan-mode-card .note{width:100%;margin:0}.plan-mode-card select:focus-visible{outline:3px solid #76b995;outline-offset:2px}@media(max-width:650px){.plan-mode-card{display:grid;grid-template-columns:minmax(0,1fr);padding:14px;margin:14px 0 6px}.plan-mode-card select{width:100%;min-width:0}.plan-mode-card label{white-space:normal}}
+
+/* Imagens dos movimentos — tamanhos previsíveis em todas as telas */
+.exercise{grid-template-columns:26px 76px minmax(0,1fr) minmax(170px,230px) 48px;align-items:center}
+.exercise-photo{display:grid;place-items:center;width:76px;height:76px;overflow:hidden;flex-shrink:0;border-radius:12px;background:#edf3ec;border:1px solid #d8e5d8}
+.exercise-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.exercise-photo-placeholder{font-size:27px;color:#759681}
+.exercise-description{min-width:0}
+.exercise-description b{overflow-wrap:anywhere}
+@media(min-width:651px) and (max-width:1199px){
+ .exercise{grid-template-columns:26px 64px minmax(0,1fr) minmax(160px,200px) 48px}
+ .exercise-photo{width:64px;height:64px}
+}
+@media(max-width:650px){
+ .exercise{grid-template-columns:22px 66px minmax(0,1fr) 48px;align-items:start}
+ .exercise .num{grid-column:1;grid-row:1;align-self:center}
+ .exercise .exercise-photo{grid-column:2;grid-row:1;width:66px;height:66px}
+ .exercise .exercise-description{grid-column:3;grid-row:1}
+ .exercise .check-target{grid-column:4;grid-row:1}
+ .exercise .load-control{grid-column:1/-1;grid-row:2}
+}
+@media(max-width:360px){
+ .exercise{grid-template-columns:18px 54px minmax(0,1fr) 48px;gap:6px}
+ .exercise .exercise-photo{width:54px;height:54px}
+}
