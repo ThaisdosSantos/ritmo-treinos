@@ -7,10 +7,11 @@
 - Importação GPX com pontos `trkpt` e timestamps, exportação GPX por atividade.
 - Tênis com limite de quilometragem e desgaste calculado pelo histórico.
 - Comparação **aproximada** de percursos com início a até 200 m e distância similar; não são segmentos Strava.
-- Histórico e tênis isolados por conta Google em `localStorage`.
+- Histórico e tênis separados por conta Google e sincronizados no MongoDB Atlas.
 
 ## Limitações importantes
-- **Ainda não há sincronização MongoDB das atividades de corrida**, diferentemente do histórico de musculação. Dados são locais e podem ser perdidos ao limpar o navegador. Exporte GPX regularmente.
+- Sincronização MongoDB: após atualizar o backend Render, corridas, rotas e tênis são sincronizados com a conta Google. Sem conexão, os dados permanecem locais até uma próxima tentativa. Exporte GPX regularmente.
+- Rotas GPS contêm localização pessoal sensível. Evite compartilhar GPX publicamente.
 - GPS do navegador pode ser suspenso com tela bloqueada, PWA em segundo plano ou economia de bateria, especialmente no iPhone. Não promete rastreamento contínuo com a tela apagada.
 - Pace atual é estimado por posições recentes; leituras ruins podem causar flutuações.
 - Cadência não é detectada automaticamente, e a elevação depende da disponibilidade/precisão de altitude GPS.
