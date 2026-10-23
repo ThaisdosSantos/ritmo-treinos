@@ -52,3 +52,25 @@
 #running .run-map-actions button{background:#fff;color:#193c2a;border:1px solid #c5d4c5;box-shadow:0 2px 9px #0002;border-radius:8px;padding:11px 13px;font-size:13px;font-weight:750;min-height:44px;touch-action:manipulation}
 #running #run-map{touch-action:pan-y!important}
 @media(max-width:680px){#running .run-metrics .run-key-metric strong{font-size:clamp(32px,8vw,42px)!important}#running .run-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}#running .run-fields{align-items:end!important}#running .run-map-actions button{font-size:12px}}
+
+/* Advanced running UI */
+#running .run-metrics .run-key-metric strong{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;font-size:clamp(32px,3.5vw,44px)!important;font-weight:800!important;letter-spacing:-.05em}
+#running .run-gps-quality{display:inline-flex;margin:0 10px 16px 0;padding:9px 13px;border-radius:20px;font-size:13px;font-weight:800}
+#running .run-gps-quality.strong{background:#d7f3dc;color:#135b30}
+#running .run-gps-quality.weak{background:#fff1bc;color:#684800}
+#running .run-gps-quality.no-signal{background:#fce3e3;color:#992626}
+#running .run-hold{position:relative;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;isolation:isolate}
+#running .run-hold::before{content:'';position:absolute;inset:0;background:conic-gradient(#fff8 0deg,#fff8 360deg);opacity:0;transform:scale(0);border-radius:50%;pointer-events:none}
+#running .run-hold.holding::before{opacity:.55;transform:scale(2);transition:transform var(--hold-duration,2500ms) linear}
+#running .run-hold:focus-visible{outline:3px solid #195e42;outline-offset:3px}
+#running .run-route-marker{background:none;border:none}
+#running .run-route-marker span{display:grid;place-items:center;width:28px;height:28px;color:#fff;font-weight:900;border:2px solid white;border-radius:50%;box-shadow:0 2px 8px #0006}
+#running .run-profile{min-height:155px;background:#f5f8f3;border-radius:12px;padding:12px;margin:12px 0 22px;overflow:hidden}
+#running .run-profile svg{display:block;width:100%;height:145px}
+#running .run-records{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:14px;margin:16px 0 26px}
+#running .run-record-card{background:#e8f4e2;padding:18px;border-radius:13px;display:grid;gap:9px}
+#running .run-record-card small{font-size:13px;color:#3e624d}
+#running .run-record-card strong{font-size:25px;font-weight:850;font-variant-numeric:tabular-nums}
+#running .run-shoe-worn{border-left:4px solid #d56a35;padding-left:14px;background:#fff6ed}
+#running .run-shoe-actions{display:flex;flex-wrap:wrap;gap:9px}
+@media(max-width:680px){#running .run-metrics .run-key-metric strong{font-size:clamp(30px,7.5vw,40px)!important}}
