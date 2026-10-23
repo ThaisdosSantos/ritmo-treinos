@@ -27,3 +27,28 @@
 #running .run-shoe progress{width:100%}
 @media(max-width:1000px){#running .run-grid{grid-template-columns:1fr!important}#running #run-map{height:300px!important}}
 @media(max-width:540px){#running .run-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}#running .run-buttons button{flex-basis:100%!important}#running #run-map{height:260px!important}}
+
+/* Running session controls: sunlight-readable and touch-friendly. */
+#running .run-session-badge{display:inline-flex;align-items:center;font-size:13px;font-weight:800;letter-spacing:.02em;padding:9px 14px;border-radius:24px;margin-bottom:16px}
+#running .run-session-badge.ready{color:#286045;background:#e7f2e5}
+#running .run-session-badge.is-recording{color:#fff;background:#197546;box-shadow:0 0 0 4px #d5f0dd}
+#running .run-session-badge.is-paused{color:#664100;background:#ffe2a0}
+#running .run-gps-alert{background:#fff0bb;border:2px solid #dba733;color:#553700;padding:15px 17px;border-radius:12px;margin-bottom:16px;font-size:14px;font-weight:750;line-height:1.5}
+#running .run-gps-alert.error{background:#ffebea;border-color:#db4545;color:#8b1616}
+#running .run-options{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:18px}
+#running .run-options label{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600}
+#running .run-options input{width:19px;height:19px;accent-color:#257a4e}
+#running .run-quick-shoe{align-self:end;border:1px solid #c9dbcd;border-radius:9px;background:#eef7e9;color:#206744;font-size:13px;font-weight:700;min-height:45px;padding:8px 12px;white-space:nowrap}
+#running .run-metrics .run-key-metric{background:#e1f2dc!important;border:2px solid #c2e2b8}
+#running .run-metrics .run-key-metric strong{font-size:clamp(32px,3.5vw,43px)!important;line-height:1.1!important;letter-spacing:-1px;font-weight:850;font-variant-numeric:tabular-nums;white-space:normal}
+#running .run-metrics .run-key-metric small{font-size:14px!important;color:#28543c;font-weight:750}
+#running .run-buttons .run-start{background:#227c49;color:#fff;font-size:17px;min-height:58px}
+#running .run-buttons .run-pause{background:#ffca63;color:#503300;border:0;border-radius:9px;padding:15px;font-weight:800;font-size:17px;min-height:58px}
+#running .run-buttons .run-pause.run-resume{background:#2a8850;color:#fff}
+#running .run-buttons .run-stop{background:#742e33;color:#fff;border:0;border-radius:9px;padding:15px;font-weight:800;font-size:17px;min-height:58px}
+#running .run-buttons .run-start.hidden,#running .run-buttons .run-pause.hidden,#running .run-buttons .run-stop.hidden{display:none!important}
+#running .run-map-wrap{position:relative;isolation:isolate;overflow:hidden;border-radius:12px}
+#running .run-map-actions{position:absolute;top:12px;right:12px;z-index:550;display:flex;flex-direction:column;gap:8px;max-width:calc(100% - 24px)}
+#running .run-map-actions button{background:#fff;color:#193c2a;border:1px solid #c5d4c5;box-shadow:0 2px 9px #0002;border-radius:8px;padding:11px 13px;font-size:13px;font-weight:750;min-height:44px;touch-action:manipulation}
+#running #run-map{touch-action:pan-y!important}
+@media(max-width:680px){#running .run-metrics .run-key-metric strong{font-size:clamp(32px,8vw,42px)!important}#running .run-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}#running .run-fields{align-items:end!important}#running .run-map-actions button{font-size:12px}}
